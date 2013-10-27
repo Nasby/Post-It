@@ -1,0 +1,81 @@
+package com.example.postit;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ToggleButton;
+
+public class MainActivity extends Activity {
+	private Boolean fb_toggled;
+	private Boolean twitter_toggled;
+	private ToggleButton facebook;
+	private ToggleButton twitter;
+	private ImageButton postbtn;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+	
+	@Override
+	protected void onStart(){
+		super.onStart();
+		facebook = (ToggleButton) findViewById(R.id.facebook_tb);
+		twitter = (ToggleButton) findViewById(R.id.twitter_tb);
+		postbtn = (ImageButton) findViewById(R.id.angry_btn);
+		
+		facebook.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		        if (isChecked) {
+		            fb_toggled = true;
+		            //code that prompts user to log in goes here
+		        } else {
+		        	fb_toggled = false;
+		        }
+		    }
+		});
+		
+		twitter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		        if (isChecked) {
+		            twitter_toggled = true;
+		            //code that prompts user to log in goes here
+		        } else {
+		        	twitter_toggled = false;
+		        }
+		    }
+		});
+		
+		postbtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+			    if(twitter_toggled == true) {
+			    	//code that posts the text to twitter account
+			    }
+			    if(fb_toggled == true){
+			    	//code that posts the text to fb account
+			    }
+			}
+		});
+		
+	}
+	
+	
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	
+
+}
