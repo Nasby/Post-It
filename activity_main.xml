@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/corkboard"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+   <!-- <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/tumblr_tb"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignRight="@+id/editText1"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_margin="10dp"
+            android:textOn=""
+       		android:textOff=""
+            android:layout_marginRight="46dp"
+            android:background="@drawable/tumblr_toggle"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerInside" />
+
+        <ToggleButton
+            android:id="@+id/googleplus_tb"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignBaseline="@+id/tumblr_tb"
+            android:layout_alignBottom="@+id/tumblr_tb"
+            android:layout_alignLeft="@+id/editText1"
+            android:layout_margin="10dp"
+            android:textOn=""
+       		android:textOff=""
+            android:layout_marginLeft="35dp"
+            android:background="@drawable/googleplus_toggle"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerInside" />
+    </LinearLayout> -->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:src="@drawable/sticky_note" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:lines="9" >
+
+        <requestFocus />
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/angry_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/editText1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/pushpin"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/twitter_tb"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/twitter_toggle"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerInside" />
+
+        <ToggleButton
+            android:id="@+id/facebook_tb"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="85dp"
+            android:background="@drawable/facebook_toggle"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+</RelativeLayout>
