@@ -1,0 +1,122 @@
+package com.example.postit;
+
+import java.io.IOException;
+
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity implements OnClickListener{
+	
+	Facebook fb;
+	ImageView pic, button;
+	SharedPreferences sp;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+   
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        sp = getPreferences(MODE_PRIVATE);
+        String access_toke = sp.getString("access_token", null);
+        long expire = sp.getLong("access_expires", 0);
+        if ("access_token" != null)
+        {
+        	fb.setAccessToken("access_token");
+        	if (expire != 0)
+        	{
+        		fb.setAccessExpires(expire);
+        	}
+        		
+        	
+        }
+        String APP_ID = "1427323920822672";
+    	Facebook fb = new Facebook(APP_ID);
+        button = (ImageView)findViewById(R.id.login);
+        pic = (ImageView)findViewById(R.id.picture_pic);
+        button.setOnClickListener(this);
+        updateButtonImage();
+        
+        
+    }
+    private void updateButtonImage() {
+		// TODO Auto-generated method stub
+    	if(fb.isSessionValid())
+    	{
+    		button.setImageResource(R.drawable.logout_button);
+    	}
+    	else
+    	{
+    		button.setImageResource(R.drawable.login_button);
+    		
+    	}
+	}
+	@Override
+    public void onClick(View V)
+    {
+    	if(fb.isSessionValid())
+    	{
+    		try{
+    		fb.logout(getApplicationContext());
+    		}
+    		catch (IOException e) 
+    		{
+    			e.printStackTrace();
+    		}
+    	}
+    	else
+    	{
+    		fb.authorize(MainActivity.this, new String[] {"email"},new DialogListener() {
+				
+				@Override
+				public void onFacebookError(FacebookError e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void onError(DialogError e) {
+					// TODO Auto-generated method stub
+					Toast.makeText(MainActivity.this, "onError",Toast.LENGTH_SHORT).show();
+					
+				}
+				
+				@Override
+				public void onComplete(Bundle values) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void onCancel() {
+					// TODO Auto-generated method stub
+					Toast.makeText(MainActivity.this, "onCancel",Toast.LENGTH_SHORT).show();
+				}
+			});
+    	}
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+    	fb.authorizeCallback(requestCode, resultCode, data);
+    	
+    }
+}
